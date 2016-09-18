@@ -1,0 +1,71 @@
+<script type="text/x-red" data-template-name="sendurl-node">
+    <div class="form-row">
+        <label for="node-input-state" style="width:40%;"><i class="fa fa-tasks"></i> LED state:</label>
+        <select type="text" id="node-input-state" style="width:55%;">
+        <option value="OFF">OFF</option>
+        <option value="ON">ON</option>
+        <option value="FLASH">FLASH</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-colour" style="width:40%;"><i class="fa fa-tasks"></i> LED colour:</label>
+        <select type="text" id="node-input-colour" style="width:55%;">
+        <option value="GREEN">GREEN</option>
+        <option value="AMBER">AMBER</option>
+        <option value="RED">RED</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-id" style="width:40%;"><i class="fa fa-tag"></i> Symbolic name:</label>
+        <input type="text" id="node-input-id" placeholder="" style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-wake" style="width:40%;"><i class="fa fa-tag"></i> Wake device?</label>
+        <input type="checkbox" id="node-input-wake" style="display: inline-block; width: auto; vertical-align: top;">
+        <!--<label for="node-input-wake" style="width: 50%;"> Wake device?</label>-->
+    </div>
+    <div class="form-row">
+        <label for="node-input-label" style="width:40%;"><i class="fa fa-tag"></i> Label:</label>
+        <input type="text" id="node-input-label" placeholder="Label..." style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name" style="width:40%;"><i class="fa fa-tag"></i> Name:</label>
+        <input type="text" id="node-input-name" placeholder="Name..." style="width:55%;">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="sendurl-node">
+    <p>Provides a node for sending XML responses to an OpenScape CP phone SendURL request</p>
+    <p>Configure required items within the node or set them via the msg object</p>
+    <ul>
+        <li><code>msg.state</code>can be "ON", "OFF" or "FLASH"</li>
+        <li><code>msg.colour</code>can be "GREEN", "AMBER" or "RED"</li>
+        <li><code>msg.id</code>The symbolic name of the configured FPK</li>
+        <li><code>msg.wake</code>Wake the device from screensaver mode / energy saving mode?</li>
+        <li><code>msg.label</code>Can be any text, will be shown on CP600 key modules</li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('sendurl-node',{
+        category: 'output',
+        color:"rgb(136, 197, 64)",
+        defaults: {
+            name: {value:""},
+            state: {value:"OFF"},
+            colour: {value:"GREEN"},
+            id: {value:""},
+            wake: {value:false},
+            label: {value:"Label..."},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||"SendURL reply";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>

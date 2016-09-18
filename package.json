@@ -1,0 +1,14 @@
+{
+	"author": {
+		"name": "Sven, mailsvb@gmail.com"
+	},
+	"description": "node-red node for sending XML response to an OpenScape CP phone",
+	"name": "node-red-contrib-sendurl",
+	"keywords": [ "node-red", "sendurl", "OpenScape", "CP" ],
+	"node-red": {
+		"nodes": {
+			"sendurl": "sendurl.js"
+		}
+	},
+	"version": "1.0.0"
+}
