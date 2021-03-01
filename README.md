@@ -1,5 +1,6 @@
 # node-red-contrib-sendurl
 Provides nodes for sending XML responses to a Unify OpenScape Desk Phone CP device SendURL request and Server Push requests sent to the Unify OpenScape Desk Phone CP device.
+Details around the SendURL key can be found on the [wiki pages](https://wiki.unify.com/wiki/Send_URL)
 
 ## Introduction
 #### send url reply node

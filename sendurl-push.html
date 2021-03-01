@@ -37,6 +37,8 @@
         <li><code>msg.serverAddr</code> The server IP address or FQDN</li>
         <li><code>msg.serverPort</code> The server port</li>
         <li><code>msg.symbolicName</code> The symbolic name used for push support</li>
+        <li><code>msg.serverContextKey</code> A separate key sent to the phone that the phone will reply with in the SendURL request. Only when msg.serverContextValue is set.</li>
+        <li><code>msg.serverContextValue</code> A separate value sent to the phone that the phone will reply with in the SendURL request. Only when msg.serverContextKey is set.</li>
     </ul>
     <p>Place the node into a flow with an http request node. The following needs to be considered for the http request node.</p>
     <ul>

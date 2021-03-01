@@ -23,6 +23,8 @@ module.exports = function(RED) {
             const serverAddr    = msg.serverAddr || FixedServerAddress;
             const serverPort    = msg.serverPort || FixedServerPort;
             const symName       = msg.symbolicName || FixedSymbolicName;
+            const contextKey    = msg.serverContextKey || '';
+            const contextValue  = msg.serverContextValue || '';
 
             let error = null;
             if (isEmptyString(protocol) || (protocol !== 'http' && protocol !== 'https')) {
@@ -54,6 +56,9 @@ module.exports = function(RED) {
                 'Content-Type': 'application/x-www-form-urlencoded'
             };
             msg.payload = `MidletName=${symName}&ServerProtocol=${protocol}&ServerAddr=${serverAddr}&ServerPort=${serverPort}&ProgramName=${symName}&RequestType=sendURL`;
+            if (!isEmptyString(contextKey) && !isEmptyString(contextValue)) {
+                msg.payload += `&ServerContextKey=${contextKey}&ServerContextValue=${contextValue}`;
+            }
 
             node.log(`${msg.method} to ${msg.url}`);
             node.log(`payload: ${msg.payload}`);
