@@ -1,0 +1,70 @@
+<script type="text/x-red" data-template-name="sendurl-push-node">
+    <div class="form-row">
+        <label for="node-input-deviceAddr" style="width:40%;"><i class="fa fa-tag"></i> Device address:</label>
+        <input type="text" id="node-input-deviceAddr" placeholder="" style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-protocol" style="width:40%;"><i class="fa fa-tasks"></i> Protocol:</label>
+        <select type="text" id="node-input-protocol" style="width:55%;">
+        <option value="https">https</option>
+        <option value="http">http</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-serverAddr" style="width:40%;"><i class="fa fa-tag"></i> Server address:</label>
+        <input type="text" id="node-input-serverAddr" placeholder="" style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-serverPort" style="width:40%;"><i class="fa fa-tag"></i> Server port:</label>
+        <input type="text" id="node-input-serverPort" placeholder="" style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-symbolicName" style="width:40%;"><i class="fa fa-tag"></i> Symbolic name:</label>
+        <input type="text" id="node-input-symbolicName" placeholder="" style="width:55%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name" style="width:40%;"><i class="fa fa-tag"></i> Name:</label>
+        <input type="text" id="node-input-name" placeholder="Name..." style="width:55%;">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="sendurl-push-node">
+    <p>Provides a node for preparing the SendURL push request to an OpenScape Desk Phone CP device</p>
+    <p>Configure required items within the node or set them via the msg object</p>
+    <ul>
+        <li><code>msg.deviceAddr</code> The Desk Phone CP device IP address or FQDN</li>
+        <li><code>msg.protocol</code> "http" or "https"</li>
+        <li><code>msg.serverAddr</code> The server IP address or FQDN</li>
+        <li><code>msg.serverPort</code> The server port</li>
+        <li><code>msg.symbolicName</code> The symbolic name used for push support</li>
+    </ul>
+    <p>Place the node into a flow with an http request node. The following needs to be considered for the http request node.</p>
+    <ul>
+        <li>The <code>Method</code> needs to be configured to <code>set by msg.method</code></li>
+        <li>The TLS configuration either needs to have valid certificates to validate the CP phones web based management certificate or the <code>Verify server certificate</code> option needs to be disabled.</li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('sendurl-push-node',{
+        category: 'SendURL',
+        color:"rgb(136, 197, 64)",
+        defaults: {
+            name: {value:""},
+            deviceAddr: {value:""},
+            protocol: {value:"https"},
+            serverAddr: {value:""},
+            serverPort: {value:443},
+            symbolicName: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "light.png",
+        label: function() {
+            return this.name||"SendURL push";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>

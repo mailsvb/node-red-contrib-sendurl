@@ -1,10 +1,11 @@
-<script type="text/x-red" data-template-name="sendurl-node">
+<script type="text/x-red" data-template-name="sendurl-reply-node">
     <div class="form-row">
         <label for="node-input-state" style="width:40%;"><i class="fa fa-tasks"></i> LED state:</label>
         <select type="text" id="node-input-state" style="width:55%;">
         <option value="OFF">OFF</option>
         <option value="ON">ON</option>
         <option value="FLASH">FLASH</option>
+        <option value="FLUTTER">FLUTTER</option>
         </select>
     </div>
     <div class="form-row">
@@ -34,21 +35,22 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="sendurl-node">
-    <p>Provides a node for sending XML responses to an OpenScape CP phone SendURL request</p>
+<script type="text/x-red" data-help-name="sendurl-reply-node">
+    <p>Provides a node for preparing the XML responses to an OpenScape Desk Phone CP SendURL request</p>
     <p>Configure required items within the node or set them via the msg object</p>
     <ul>
-        <li><code>msg.state</code>can be "ON", "OFF" or "FLASH"</li>
-        <li><code>msg.colour</code>can be "GREEN", "YELLOW" or "RED"</li>
-        <li><code>msg.id</code>The symbolic name of the configured FPK</li>
-        <li><code>msg.wake</code>Wake the device from screensaver mode / energy saving mode?</li>
-        <li><code>msg.label</code>Can be any text, will be shown on CP600 key modules</li>
+        <li><code>msg.state</code> "ON", "OFF" or "FLASH"</li>
+        <li><code>msg.colour</code> "GREEN", "YELLOW" or "RED"</li>
+        <li><code>msg.id</code> The symbolic name of the configured FPK</li>
+        <li><code>msg.wake</code> Wake the device from screensaver mode / energy saving mode?</li>
+        <li><code>msg.label</code> Can be any text, will be shown on CP600 key modules</li>
     </ul>
+    <p>Place the node into a flow starting with an <code>http in</code> node and before the <code>http response</code> node.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('sendurl-node',{
-        category: 'output',
+    RED.nodes.registerType('sendurl-reply-node',{
+        category: 'SendURL',
         color:"rgb(136, 197, 64)",
         defaults: {
             name: {value:""},
@@ -59,7 +61,7 @@
             label: {value:"Label..."},
         },
         inputs:1,
-        outputs:0,
+        outputs:1,
         icon: "light.png",
         label: function() {
             return this.name||"SendURL reply";

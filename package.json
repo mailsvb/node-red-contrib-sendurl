@@ -2,12 +2,13 @@
     "author": {
         "name": "Sven, mailsvb@gmail.com"
     },
-    "description": "node-red node for sending XML response to a Unify OpenScape CP phone",
+    "description": "node-red node for handling SendURL keys with an Atos Unify OpenScape Desk Phone CP device",
     "name": "node-red-contrib-sendurl",
     "keywords": [ "node-red", "sendurl", "OpenScape", "CP" ],
     "node-red": {
         "nodes": {
-            "sendurl": "sendurl.js"
+            "sendurl-reply": "sendurl-reply.js",
+            "sendurl-push": "sendurl-push.js"
         }
     },
     "repository": {
@@ -15,5 +16,5 @@
         "url": "git+https://github.com/mailsvb/node-red-contrib-sendurl.git"
     },
     "homepage": "https://github.com/mailsvb/node-red-contrib-sendurl#readme",
-    "version": "1.0.4"
+    "version": "1.1.0"
 }
